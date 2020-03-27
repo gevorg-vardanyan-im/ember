@@ -29,44 +29,48 @@ jobs:
           when: always
 
       - run:
-          name: sudo mkdir -p /var/www/example.com/html
-          command: sudo mkdir -p /var/www/example.com/html
+          name: sudo mkdir -p /var/www/testci.com/html
+          command: sudo mkdir -p /var/www/testci.com/html
           when: always
       - run:
-          name: sudo chown -R `whoami`:`whoami` /var/www/example.com/html
-          command: sudo chown -R `whoami`:`whoami` /var/www/example.com/html
+          name: sudo chown -R `whoami`:`whoami` /var/www/testci.com/html
+          command: sudo chown -R `whoami`:`whoami` /var/www/testci.com/html
           when: always
       - run:
-          name: sudo chmod -R 755 /var/www/example.com
-          command: sudo chmod -R 755 /var/www/example.com
+          name: sudo chmod -R 755 /var/www/testci.com
+          command: sudo chmod -R 755 /var/www/testci.com
           when: always
       - run:
-          name: sudo chmod -R 755 /var/www/example.com
-          command: sudo chmod -R 755 /var/www/example.com
+          name: sudo chmod -R 755 /var/www/testci.com
+          command: sudo chmod -R 755 /var/www/testci.com
           when: always
       - run:
-          name: sudo touch /var/www/example.com/html/index.html
-          command: sudo touch /var/www/example.com/html/index.html
+          name: sudo touch /var/www/testci.com/html/index.html
+          command: sudo touch /var/www/testci.com/html/index.html
           when: always
       - run:
-          name: /var/www/example.com/html/index.html
-          command: sudo echo '<html><head><title>Welcome to Example.com!</title></head><body><h1>Success!  The example.com server block is working!</h1></body></html>' >> /var/www/example.com/html/index.html
+          name: sudo chmod -R 777 /var/www/testci.com/html/
+          command: sudo chmod -R 777 /var/www/testci.com/html/
           when: always
       - run:
-          name: /etc/nginx/sites-available/example.com
-          command: sudo cp server_conf /etc/nginx/sites-available/example.com
+          name: /var/www/testci.com/html/index.html
+          command: sudo echo '<html><head><title>Welcome to testci.com!</title></head><body><h1>Success!  The testci.com server block is working!</h1></body></html>' >> /var/www/testci.com/html/index.html
           when: always
       - run:
-          name: cat /etc/nginx/sites-available/example.com
-          command: cat /etc/nginx/sites-available/example.com
+          name: /etc/nginx/sites-available/testci.com
+          command: sudo cp server_conf /etc/nginx/sites-available/testci.com
           when: always
       - run:
-          name: sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
-          command: sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+          name: cat /etc/nginx/sites-available/testci.com
+          command: cat /etc/nginx/sites-available/testci.com
           when: always
       - run:
-          name: sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
-          command: sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+          name: sudo ln -s /etc/nginx/sites-available/testci.com /etc/nginx/sites-enabled/
+          command: sudo ln -s /etc/nginx/sites-available/testci.com /etc/nginx/sites-enabled/
+          when: always
+      - run:
+          name: sudo ln -s /etc/nginx/sites-available/testci.com /etc/nginx/sites-enabled/
+          command: sudo ln -s /etc/nginx/sites-available/testci.com /etc/nginx/sites-enabled/
           when: always
       - run:
           name: sudo sed -i 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/g' /etc/nginx/nginx.conf
@@ -81,8 +85,8 @@ jobs:
           command: sudo service nginx restart
           when: always
       - run:
-          name: curl -X GET 'http://example.com'
-          command: sudo curl -X GET 'http://example.com'
+          name: curl -X GET 'http://testci.com'
+          command: sudo curl -X GET 'http://testci.com'
           when: always
 
 
