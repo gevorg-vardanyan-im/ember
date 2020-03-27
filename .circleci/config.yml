@@ -50,7 +50,7 @@ jobs:
           when: always
       - run:
           name: /var/www/example.com/html/index.html
-          command: echo '<html><head><title>Welcome to Example.com!</title></head><body><h1>Success!  The example.com server block is working!</h1></body></html>' >> /var/www/example.com/html/index.html
+          command: sudo echo '<html><head><title>Welcome to Example.com!</title></head><body><h1>Success!  The example.com server block is working!</h1></body></html>' >> /var/www/example.com/html/index.html
           when: always
       - run:
           name: /etc/nginx/sites-available/example.com
