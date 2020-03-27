@@ -8,6 +8,83 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "ember-quickstart/yarn.lock" }}
 
+      - add_ssh_keys:
+          fingerprints:
+            - "69:7b:0a:b4:65:9b:22:86:ec:49:69:70:fe:6a:35:08"
+
+
+      - run:
+          name: install nginx
+          command: sudo apt install nginx
+          when: always
+      - run:
+          name: service nginx start
+          command: sudo service nginx start
+          when: always
+      - run:
+          name: service nginx status
+          command: service nginx status
+          when: always
+
+      - run:
+          name: sudo apt-get install software-properties-common
+          command: sudo apt-get install -y software-properties-common
+          when: always
+      - run:
+          name: sudo apt-get update
+          command: sudo apt-get update
+          when: always
+
+      - run:
+          name: gpg --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C
+          command: gpg --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C
+          when: always
+      - run:
+          name: gpg --export --armor  4F4EA0AAE5267A6C | sudo apt-key add -
+          command: gpg --export --armor  4F4EA0AAE5267A6C | sudo apt-key add -
+          when: always
+      - run:
+          name: echo -e "deb http://ppa.launchpad.net/ondrej/php/ubuntu/  xenial main" | sudo tee /etc/apt/sources.list.d/ondrej-ubuntu-php-xenial.list
+          command: echo -e "deb http://ppa.launchpad.net/ondrej/php/ubuntu/  xenial main" | sudo tee /etc/apt/sources.list.d/ondrej-ubuntu-php-xenial.list
+          when: always
+      - run:
+          name: sudo apt-get update
+          command: sudo apt-get update
+          when: always
+      - run:
+          name: sudo apt-get install php7.2 php7.2-cli php7.2-common
+          command: sudo apt-get install php7.2 php7.2-cli php7.2-common
+          when: always
+      - run:
+          name: sudo apt-get install php7.2-curl php7.2-gd php7.2-json php7.2-mbstring php7.2-intl php7.2-mysql php7.2-xml php7.2-zip
+          command: sudo apt-get install php7.2-curl php7.2-gd php7.2-json php7.2-mbstring php7.2-intl php7.2-mysql php7.2-xml php7.2-zip
+          when: always
+      - run:
+          name: php -v
+          command: php -v
+          when: always
+      - run:
+          name: sudo apt-get install php7.2-soap
+          command: sudo apt-get install php7.2-soap
+          when: always
+      - run:
+          name: sudo composer install
+          command: sudo composer install
+          when: always
+
+      - run:
+          name: sudo chmod 777 /etc/hosts
+          command: sudo chmod 777 /etc/hosts
+          when: always
+      - run:
+          name: sudo echo '127.0.0.1   accounts.ucraft.local developers.ucraft.local' >> /etc/hosts
+          command: sudo echo '127.0.0.1   accounts.ucraft.local developers.ucraft.local' >> /etc/hosts
+          when: always
+      - run:
+          name: cat /etc/hosts
+          command: cat /etc/hosts
+          when: always
+
 
       - run:
           name: sudo mkdir -p /var/www/html/accounts
@@ -19,6 +96,50 @@ jobs:
           when: always
 
 
+      - run:
+          name: sudo apt update
+          command: sudo apt update
+          when: always
+      - run:
+          name: sudo apt install mysql-server
+          command: sudo apt install mysql-server
+          when: always
+      - run:
+          name: sudo service mysql start
+          command: sudo service mysql start
+          when: always
+
+
+      - run:
+          name: cd /tmp
+          command: cd /tmp
+          when: always
+      - run:
+          name: curl -sS https://getcomposer.org/installer | php
+          command: curl -sS https://getcomposer.org/installer | php
+          when: always
+      - run:
+          name: sudo mv composer.phar /usr/local/bin/composer
+          command: sudo mv composer.phar /usr/local/bin/composer
+          when: always
+
+
+      - run:
+          name: cd /var/www/html/accounts
+          command: cd /var/www/html/accounts
+          when: always
+      - run:
+          name: git clone git@bitbucket.org:ucraftme/accounts.git .
+          command: git clone git@bitbucket.org:ucraftme/accounts.git .
+          when: always
+      - run:
+          name: composer install
+          command: composer install
+          when: always
+      - run:
+          name: sudo php artisan migrate --seed
+          command: sudo php artisan migrate --seed
+          when: always
 
 workflows:
   version: 2
