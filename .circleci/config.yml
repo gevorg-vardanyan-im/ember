@@ -29,6 +29,70 @@ jobs:
           when: always
 
       - run:
+          name: sudo mkdir -p /var/www/example.com/html
+          command: sudo apt sudo mkdir -p /var/www/example.com/html
+          when: always
+      - run:
+          name: sudo chown -R `whoami`:`whoami` /var/www/example.com/html
+          command: sudo apt sudo chown -R `whoami`:`whoami` /var/www/example.com/html
+          when: always
+      - run:
+          name: sudo chmod -R 755 /var/www/example.com
+          command: sudo apt sudo chmod -R 755 /var/www/example.com
+          when: always
+      - run:
+          name: sudo chmod -R 755 /var/www/example.com
+          command: sudo apt sudo chmod -R 755 /var/www/example.com
+          when: always
+      - run:
+          name: touch /var/www/example.com/html/index.html
+          command: touch /var/www/example.com/html/index.html
+          when: always
+      - run:
+          name: /var/www/example.com/html/index.html
+          command: echo '<html><head><title>Welcome to Example.com!</title></head><body><h1>Success!  The example.com server block is working!</h1></body></html>' >> /var/www/example.com/html/index.html
+          when: always
+      - run:
+          name: /etc/nginx/sites-available/example.com
+          command: sudo cp server_conf /etc/nginx/sites-available/example.com
+          when: always
+      - run:
+          name: cat /etc/nginx/sites-available/example.com
+          command: cat /etc/nginx/sites-available/example.com
+          when: always
+      - run:
+          name: sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+          command: sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+          when: always
+      - run:
+          name: sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+          command: sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+          when: always
+      - run:
+          name: sudo sed -i 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/g' /etc/nginx/nginx.conf
+          command: sudo sed -i 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/g' /etc/nginx/nginx.conf
+          when: always
+      - run:
+          name: sudo nginx -t
+          command: sudo nginx -t
+          when: always
+      - run:
+          name: service nginx restart
+          command: sudo service nginx restart
+          when: always
+      - run:
+          name: curl -X GET 'http://example.com'
+          command: sudo curl -X GET 'http://example.com'
+          when: always
+
+
+
+
+
+
+
+
+      - run:
           name: sudo apt-get install software-properties-common
           command: sudo apt-get install -y software-properties-common
           when: always
