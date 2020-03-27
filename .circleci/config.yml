@@ -30,23 +30,23 @@ jobs:
 
       - run:
           name: sudo mkdir -p /var/www/example.com/html
-          command: sudo apt sudo mkdir -p /var/www/example.com/html
+          command: sudo mkdir -p /var/www/example.com/html
           when: always
       - run:
           name: sudo chown -R `whoami`:`whoami` /var/www/example.com/html
-          command: sudo apt sudo chown -R `whoami`:`whoami` /var/www/example.com/html
+          command: sudo chown -R `whoami`:`whoami` /var/www/example.com/html
           when: always
       - run:
           name: sudo chmod -R 755 /var/www/example.com
-          command: sudo apt sudo chmod -R 755 /var/www/example.com
+          command: sudo chmod -R 755 /var/www/example.com
           when: always
       - run:
           name: sudo chmod -R 755 /var/www/example.com
-          command: sudo apt sudo chmod -R 755 /var/www/example.com
+          command: sudo chmod -R 755 /var/www/example.com
           when: always
       - run:
-          name: touch /var/www/example.com/html/index.html
-          command: touch /var/www/example.com/html/index.html
+          name: sudo touch /var/www/example.com/html/index.html
+          command: sudo touch /var/www/example.com/html/index.html
           when: always
       - run:
           name: /var/www/example.com/html/index.html
