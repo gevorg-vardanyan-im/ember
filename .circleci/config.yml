@@ -67,10 +67,10 @@ jobs:
           name: sudo apt-get install php7.2-soap
           command: sudo apt-get install php7.2-soap
           when: always
-      - run:
-          name: sudo composer install
-          command: sudo composer install
-          when: always
+      # - run:
+      #     name: sudo composer install
+      #     command: sudo composer install
+      #     when: always
 
       - run:
           name: sudo chmod 777 /etc/hosts
@@ -129,8 +129,8 @@ jobs:
           command: cd /var/www/html/accounts
           when: always
       - run:
-          name: git clone git@bitbucket.org:ucraftme/accounts.git .
-          command: git clone git@bitbucket.org:ucraftme/accounts.git .
+          name: git clone git@bitbucket.org:ucraftme/accounts.git
+          command: git clone git@bitbucket.org:ucraftme/accounts.git
           when: always
       - run:
           name: composer install
