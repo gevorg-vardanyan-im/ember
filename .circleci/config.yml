@@ -5,15 +5,18 @@ jobs:
       - image: circleci/node:10.18-browsers
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "ember-quickstart/yarn.lock" }}
+      # - restore_cache:
+          # key: dependency-cache-{{ checksum "ember-quickstart/yarn.lock" }}
 
-      - add_ssh_keys:
-          fingerprints:
+      # - add_ssh_keys:
+          # fingerprints:
             # - "69:7b:0a:b4:65:9b:22:86:ec:49:69:70:fe:6a:35:08"
-            - "c3:7e:20:e3:60:2e:09:76:c4:28:c1:6b:49:b2:09:7f"
+            # - "c3:7e:20:e3:60:2e:09:76:c4:28:c1:6b:49:b2:09:7f"
             # - "70:d6:0b:32:d9:f1:df:a6:9f:63:52:de:bf:f5:0d:e0"
 
+
+      # install nginx with the relevant stuu and start it
+      # configure for testci.com
 
       - run:
           name: install nginx
@@ -27,7 +30,6 @@ jobs:
           name: service nginx status
           command: service nginx status
           when: always
-
       - run:
           name: sudo mkdir -p /var/www/testci.com/html
           command: sudo mkdir -p /var/www/testci.com/html
@@ -69,10 +71,6 @@ jobs:
           command: sudo ln -s /etc/nginx/sites-available/testci.com /etc/nginx/sites-enabled/
           when: always
       - run:
-          name: sudo ln -s /etc/nginx/sites-available/testci.com /etc/nginx/sites-enabled/
-          command: sudo ln -s /etc/nginx/sites-available/testci.com /etc/nginx/sites-enabled/
-          when: always
-      - run:
           name: sudo sed -i 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/g' /etc/nginx/nginx.conf
           command: sudo sed -i 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/g' /etc/nginx/nginx.conf
           when: always
@@ -92,9 +90,7 @@ jobs:
 
 
 
-
-
-
+      # install php-7.2
 
       - run:
           name: sudo apt-get install software-properties-common
