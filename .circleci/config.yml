@@ -137,8 +137,8 @@ jobs:
           command: sudo chmod 777 /etc/hosts
           when: always
       - run:
-          name: sudo echo '127.0.0.1   accounts.ucraft.local developers.ucraft.local' >> /etc/hosts
-          command: sudo echo '127.0.0.1   accounts.ucraft.local developers.ucraft.local' >> /etc/hosts
+          name: sudo echo '127.0.0.1   testci1111111.com' >> /etc/hosts
+          command: sudo echo '127.0.0.1   testci1111111.com' >> /etc/hosts
           when: always
       - run:
           name: cat /etc/hosts
