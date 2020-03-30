@@ -53,6 +53,10 @@ jobs:
           command: sudo cp server_conf /etc/nginx/sites-available/testci1111111.com
           when: always
       - run:
+          name: sudo cp index.php /var/www/testci1111111.com/html
+          command: sudo cp index.php /var/www/testci1111111.com/html
+          when: always
+      - run:
           name: cat /etc/nginx/sites-available/testci1111111.com
           command: cat /etc/nginx/sites-available/testci1111111.com
           when: always
