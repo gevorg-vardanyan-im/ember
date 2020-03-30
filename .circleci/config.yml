@@ -72,14 +72,6 @@ jobs:
           name: sudo nginx -t
           command: sudo nginx -t
           when: always
-      - run:
-          name: service nginx restart
-          command: sudo service nginx restart
-          when: always
-      - run:
-          name: sudo curl -I http://testci1111111.com
-          command: sudo curl -I http://testci1111111.com
-          when: always
 
 
 
@@ -181,6 +173,16 @@ jobs:
       - run:
           name: sudo mv composer.phar /usr/local/bin/composer
           command: sudo mv composer.phar /usr/local/bin/composer
+          when: always
+
+
+      - run:
+          name: service nginx restart
+          command: sudo service nginx restart
+          when: always
+      - run:
+          name: sudo curl -I http://testci1111111.com
+          command: sudo curl -I http://testci1111111.com
           when: always
 
 
