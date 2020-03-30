@@ -77,8 +77,8 @@ jobs:
           command: sudo service nginx restart
           when: always
       - run:
-          name: curl -X GET 'http://testci1111111.com'
-          command: sudo curl -X GET 'http://testci1111111.com'
+          name: sudo curl -I http://testci1111111.com
+          command: sudo curl -I http://testci1111111.com
           when: always
 
 
@@ -138,7 +138,7 @@ jobs:
           when: always
       - run:
           name: sudo echo '127.0.0.1   testci1111111.com' >> /etc/hosts
-          command: sudo echo '127.0.0.1   testci1111111.com' >> /etc/hosts
+          command: sudo echo '127.0.0.1   testci1111111.com www.testci1111111.com' >> /etc/hosts
           when: always
       - run:
           name: cat /etc/hosts
