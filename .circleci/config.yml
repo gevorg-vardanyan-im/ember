@@ -180,6 +180,20 @@ jobs:
           name: service nginx restart
           command: sudo service nginx restart
           when: always
+
+      - run:
+          name: sudo apt-get install php7.2-cli php7.2-fpm php7.2-curl php7.2-gd php7.2-mysql php7.2-mbstring zip unzip
+          command: sudo apt-get install php7.2-cli php7.2-fpm php7.2-curl php7.2-gd php7.2-mysql php7.2-mbstring zip unzip
+          when: always
+
+      - run:
+          name: service php7.2-fpm start
+          command: sudo service php7.2-fpm reload
+          when: always
+      - run:
+          name: sudo touch /var/www/html/index.php
+          command: sudo touch /var/www/html/index.php
+          when: always
       - run:
           name: sudo curl -I http://testci1111111.com
           command: sudo curl -I http://testci1111111.com
