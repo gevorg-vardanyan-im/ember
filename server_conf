@@ -7,6 +7,7 @@ server {
         index index.php index.html index.htm index.nginx-debian.html;
 
         server_name testci1111111.com www.testci1111111.com;
+        error_log /var/log/nginx/testci1111111.log;
         location / {        
                 try_files $uri $uri/ /index.php?$query_string;
         }
