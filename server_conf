@@ -22,7 +22,10 @@ server {
         }
 
         location ^~ /api/ {
-            fastcgi_pass    127.0.0.1:9000; 
+            set $upstream 127.0.0.1:9000;
+
+        # nginx will now start if host is not reachable
+            fastcgi_pass    $upstream; 
             fastcgi_index   index.php;
         }
 
