@@ -1,13 +1,27 @@
 server {
+        
         listen 80;
-        listen [::]:80;
 
         root /var/www/testci1111111.com/html;
-        index index.html index.htm index.nginx-debian.html;
+        
+        index index.php index.html index.htm index.nginx-debian.html;
 
         server_name testci1111111.com www.testci1111111.com;
-
-        location / {
-                try_files $uri $uri/ =404;
+        location / {        
+                try_files $uri $uri/ /index.php?$query_string;
         }
+
+        
+        location ~ \.php$ {
+                include fastcgi.conf;
+                fastcgi_pass 127.0.0.1:9000;
+        }
+        location ~* \.(eot|ttf|woff|woff2)$ {
+            add_header Access-Control-Allow-Origin *;
+        }
+
+        location ~ /\.ht {
+                deny all;
+       }
+
 }
