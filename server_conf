@@ -12,14 +12,18 @@ server {
                 try_files $uri $uri/ /index.php?$query_string;
         }
 
-        
+
         location ~ \.php$ {
-                include fastcgi.conf;
-                fastcgi_pass 127.0.0.1:9000;
+            include fastcgi.conf;
+            fastcgi_pass 127.0.0.1:9000;
         }
         location ~* \.(eot|ttf|woff|woff2)$ {
             add_header Access-Control-Allow-Origin *;
         }
 
+        location ^~ /api/ {
+            fastcgi_pass    127.0.0.1:9000; 
+            fastcgi_index   index.php;
+        }
 
 }
