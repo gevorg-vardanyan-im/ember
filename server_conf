@@ -20,8 +20,5 @@ server {
             add_header Access-Control-Allow-Origin *;
         }
 
-        location ~ /\.ht {
-                deny all;
-       }
 
 }
